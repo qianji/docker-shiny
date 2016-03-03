@@ -1,0 +1,10 @@
+# Group Performance Analysis
+
+The group performance analyses use the FTSE [Industry Classification Benchmark (ICB)](http://www.icbenchmark.com/Site/ICB_Structure) [assignment map](http://www1.nyse.com/about/listed/lc_all_industry.html) to create industry, super-sector, sector, and sub-sector relative performance summaries.  The analyses use distinct ICB maps for the NYSE and the NASDAQ.  Use the Analysis page to see the tickers omitted from analysis for various reasons.
+
+We use each map symbol's daily closing prices and volume for various analyses.  The closing prices and volumes are current as of the date shown at the top of each page.  In a few cases the ICB tickers now trade on NASDAQ rather than NYSE, so we substitute those prices to maintain the NYSE assignments, while these tickers remain in the NASDAQ analysis as well.  
+
+Aggregation for each group is done by equal-weighted price average or equal-weighting of money flow intensity.  Each analysis considers short term (20 trading days), intermediate term (60 trading days), and long term (120 trading days) momentum and a composite measure _momentum rank position_ which combines the three.  In addition to momentum trends and ranks, supporting analysis considers the Chaikin money flow (CMF) and gearing.  CMF is the percentage of days during the past 125 days during which the money flow intensity (volume-weighted price) was positive indicating money flowing into the group. Gearing is the rolling six-month correlation with the S&P-500 index, indicating how closely the group price movement follows the benchmark index.
+
+Momentum, money flow, and their trend indicators are computed as in the group profile charts.  The daily trend charts show momentum over time together with red or green cells to indicate the down or up value of the trend indicator.  Full table quantiles use all 30-days of data for all groups to compute quantiles which are shown by color; these tables show the strong or weak trends spanning the month.  Relative daily quantiles in contrast use only each day's values to form quantiles for the day; these tables show the strong or weak values for each day.  
+
