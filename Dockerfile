@@ -12,5 +12,5 @@ RUN R -e "install.packages('quantmod', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('PerformanceAnalytics', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('ggvis', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('ggplot2', repos='http://cran.rstudio.com/')"
-COPY src/ /srv/shiny-server/
+COPY data-analysis/ /srv/shiny-server/data-analysis
 
