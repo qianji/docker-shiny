@@ -3,3 +3,4 @@ Ubuntu
 Docker
 Jenkins
 ECS
+srv/shinylog
