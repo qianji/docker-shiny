@@ -377,13 +377,15 @@ shinyUI(
              # logos, copyright, disclaimers for all pages
              header=NULL,
              footer=wellPanel(
-               fluidRow(column(4,imageOutput("logo",height="75px"),offset=4,class="center-block")),
-               fluidRow(p(HTML("Copyright &copy; 2014-2015 Softisms LLC.  All rights reserved."),class="row text-center"))
+               # fluidRow(column(width=1,align="center",imageOutput("logo",width="125",height="23", inline=FALSE))),
+               # fluidRow(column(4,imageOutput("logo",height="75px"),offset=4,class="center-block")),
+               fluidRow(column(width=12,align="center",imageOutput("logo",inline=TRUE),class="center-block")),
+               fluidRow(p(HTML("Copyright &copy; 2014-2016 Softisms LLC.  All rights reserved."),class="row text-center"))
              ), 
              fluid=TRUE,
              inverse=TRUE,
-             collapsable=TRUE,
-             responsive=TRUE
+             collapsible=TRUE
+             # responsive=TRUE
              #theme="css/style.css",
              #navbarMenu("Modes",
              #            tabPanel("Snapshot",icon=icon("camera")),

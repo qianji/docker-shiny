@@ -10,10 +10,10 @@
 
 
 
-library(shiny) # must be Shiny >= 0.10.2 for DataTable names;
-               # must be Shiny >= 0.10.2.9003 for sorting bug fix
+library(shiny)
 library(shinyBS)
 library(dplyr)
+library(tidyr)
 library(lattice)
 
 # constants
@@ -28,9 +28,17 @@ shinyServer(function(input, output, session) {
   
   # reactive data acquisition for the session
   # loads enviroment 'dataset' from group-power into global environment
-  load_dataset <- reactive({
+#   load_dataset <- reactive({
+#     print("loading dataset")
+#     load("data/group-report.RData",envir=.GlobalEnv)
+#     print("returned from load")
+#   })
+
+  load_dataset <- function(){
+    # print("loading dataset")
     load("data/group-report.RData",envir=.GlobalEnv)
-  })
+    # print("returned from load")
+  }
   
   ### NYSE industry panel
   output$nyse_industry_menu <- renderUI({
@@ -42,15 +50,15 @@ shinyServer(function(input, output, session) {
   })
   
   output$industry <- renderDataTable({
-    print("loading")
+    #print("loading")
     load_dataset()
-    print("got dataset")
+    #print("got dataset")
     data <- dataset$nyse_industry_sum %>%
       select(INDUS,Mem=Members,HILO,PChg,ShR=ShortRank,ShortTrend,InR=IntRank,IntTrend,LgR=LongRank,LongTrend,CMF=PSMF,PSMFTrend,RankPos,Gear,ShortQ,IntQ,LongQ) %>%
       mutate(PChg=round(PChg,DECIMALS)) %>%
       mutate(Gear=round(Gear,DECIMALS))
     
-    print(paste("input",names(input)))
+    #print(paste("input",names(input)))
     
     if ( "All" %nin% input$nyse_industry_menu ) {
       if ( !is.null(input$nyse_industry_menu)) {
@@ -141,9 +149,9 @@ shinyServer(function(input, output, session) {
   })
   
   observe({
-    print("industry observe")
+    #print("industry observe")
     sup_industry_selection <- input$nyse_sup_indus 
-    print(paste("selection",sup_industry_selection))
+    #print(paste("selection",sup_industry_selection))
     if ( length(sup_industry_selection) > 0 ) {
       load_dataset()
       d <- dataset$nyse_supsector_sum
@@ -1367,17 +1375,21 @@ shinyServer(function(input, output, session) {
   })
   
   output$nyse_heatmap_indus_short <- renderPlot({
-    load_dataset()
+    #load_dataset()
     dataset$nyse_indus_heatmaps$short
   })
+  
   output$nyse_heatmap_indus_inter <- renderPlot({
-    load_dataset()
+    #load_dataset()
+    #print(str(dataset$nyse_indus_heatmaps))
     dataset$nyse_indus_heatmaps$inter
   })
+  
   output$nyse_heatmap_indus_long <- renderPlot({
-    load_dataset()
+    #load_dataset()
     dataset$nyse_indus_heatmaps$long
   })
+  
   output$nyse_heatmap_indus_psmf <- renderPlot({
     load_dataset()
     dataset$nyse_indus_heatmaps$psmf
@@ -1711,7 +1723,7 @@ output$etp_heatmap_inverse_psmf <- renderPlot({
   })
   
   output$logo <- renderImage({
-    filename <- normalizePath(file.path('www/img/softisms.png'))
+    filename <- normalizePath(file.path('www/img/softisms_small.png'))
     list(src=filename)
   },deleteFile=FALSE)
 })
